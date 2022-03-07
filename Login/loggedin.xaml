@@ -1,0 +1,88 @@
+﻿<Window x:Class="Login.LoggedIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Login"
+        mc:Ignorable="d"
+        Title="LoggedIn" Height="450" Width="800">
+    <Window.Resources>
+        <Style BasedOn="{StaticResource {x:Type Button}}"
+           TargetType="Button"
+           x:Key="DiffButton">
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="elc" BorderBrush="#fff" BorderThickness="2" CornerRadius="3" Background="gray" Height="25" Width="66">
+                            <ContentControl Content="{TemplateBinding Content}" Foreground="#fff" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="elc" Value="#ccc"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background"  TargetName="elc" Value="green"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid Background="Black">
+        <Border CornerRadius="5" Background="#ccc" Margin="188,77,29,67"/>
+        <Grid Background="#ccc" Margin="211,77,51,67"  >
+
+            <Rectangle x:Name="Stocks" Fill="#000" Stroke="BurlyWood"  StrokeThickness="3"  Margin="378,12,10,65" RadiusX="4.413" RadiusY="4.413"/>
+            <Rectangle Fill="#000"   HorizontalAlignment="Left" Height="120" Margin="28,12,0,0" Stroke="BurlyWood" VerticalAlignment="Top" Width="276" RadiusX="17.553" RadiusY="17.553"/>
+            <StackPanel Width="94" HorizontalAlignment="Left" VerticalAlignment="Top" Height="92" Margin="49,29,0,0">
+                <Label Foreground="BurlyWood" Content="$Ticker/Symbol" FontSize="12"/>
+            </StackPanel>
+            <StackPanel  Width="158" HorizontalAlignment="Left" VerticalAlignment="Top" Height="92" Margin="130,24,0,0">
+                <TextBox x:Name="Ticker1" Background="#ccc" Text="" TextWrapping="Wrap" Width="120" Margin="7"/>
+            </StackPanel>
+            <Button Style="{StaticResource DiffButton}"  Padding="5" x:Name="btnDoIt" Content="Fetch"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="222,91,0,0" Click="btnDoIt_Click"/>
+            <Image Margin="0,121,85,-7" Stretch="Fill" Source="loginlogo.png"/>
+            <Label Background="BurlyWood" x:Name="NASDAQ_Copy1" HorizontalContentAlignment="Center" Height="30" VerticalAlignment="Top" Margin="381,12,10,0" Content= "{Binding Path=Text,ElementName=Ticker1}"/>
+        </Grid>
+        <Label Foreground="BurlyWood" x:Name="Welcome" Content="Welcome, User" HorizontalAlignment="Left" Margin="144,7,0,0" VerticalAlignment="Top" Height="53" Width="646" HorizontalContentAlignment="Center" FontSize="36" FontFamily="Tahoma"/>
+
+        <!---Spybox-->
+        <Rectangle x:Name="spyBox" Fill="#ccc" Stroke="White"   StrokeThickness="3" Margin="10,21,643,243"/>
+        <!---nasdaq-->
+        <Rectangle  x:Name="nasBox" Fill="#ccc" Stroke="White" StrokeThickness="3"  Margin="10,146,643,134"></Rectangle>
+        <!---Dow-->
+        <Rectangle  x:Name="dowBox" Fill="#ccc" Stroke="White"  StrokeThickness="3"  Margin="10,262,643,25"/>
+        <!--Text="{Binding Path=Text,ElementName=txtname}-->
+        <!---Everymin 30 pings-->
+        <Label  Background="White" x:Name="SPY"  HorizontalContentAlignment="Center" Height="27" VerticalAlignment="Top" Margin="10,21,643,0">$SPY</Label>
+
+
+
+        <Label Background="White" x:Name="NDAQ" HorizontalContentAlignment="Center" Height="30" VerticalAlignment="Top" Margin="10,146,643,0">
+            $NDAQ
+        </Label>
+        <Label x:Name="SPY1"  HorizontalContentAlignment="Left" Height="40" VerticalAlignment="Top" Margin="10,50,643,0" FontSize="10" Content="Current"/>
+        <Label x:Name="SPY2"  HorizontalContentAlignment="Left" Height="34" VerticalAlignment="Top" Margin="10,73,643,0" FontSize="10" Content="% Change"/>
+        <Label x:Name="SPY3"  HorizontalContentAlignment="Left" Height="34" VerticalAlignment="Top" Margin="10,95,643,0" FontSize="10" Content="Day Change:"/>
+        <Label x:Name="NAS1"  HorizontalContentAlignment="Left" Height="41" VerticalAlignment="Top" Margin="10,177,643,0" FontSize="10" Content="Current"/>
+        <Label x:Name="NAS2"  HorizontalContentAlignment="Left" Height="34" VerticalAlignment="Center" Margin="10,0,643,0" FontSize="10" Content="% Change"/>
+        <Label x:Name="NAS3"  HorizontalContentAlignment="Left" Height="34" VerticalAlignment="Top" Margin="10,223,643,0" FontSize="10" Content="Day Change:"/>
+        <Label x:Name="DOW1"  HorizontalContentAlignment="Left" Height="40" VerticalAlignment="Top" Margin="10,305,643,0" FontSize="10" Content="Current"/>
+        <Label x:Name="DOW2"  HorizontalContentAlignment="Left" Height="34" VerticalAlignment="Top" Margin="10,328,643,0" FontSize="10" Content="% Change"/>
+        <Label x:Name="DOW3"  HorizontalContentAlignment="Left" Height="34" VerticalAlignment="Top" Margin="10,356,643,0" FontSize="10" Content="Day Change:"/>
+        <Label x:Name="Tick1"  HorizontalContentAlignment="Left" Height="38" VerticalAlignment="Top" Margin="593,125,63,0" FontSize="15" Content="Current" Foreground="White"/>
+        <Label x:Name="Tick2"  HorizontalContentAlignment="Left" Height="32" VerticalAlignment="Top" Margin="593,163,63,0" FontSize="15" Content="% Change" Foreground="White"/>
+        <Label x:Name="TIck3"  HorizontalContentAlignment="Left" Height="32" VerticalAlignment="Center" Margin="593,0,63,0" FontSize="12.5" Content="Day Change:" Foreground="White"/>
+        <Label Background="White" x:Name="NASDAQ_Copy" HorizontalContentAlignment="Center" Height="30" VerticalAlignment="Top" Margin="10,262,643,0" Content="$DIA"/>
+        <Button Style="{StaticResource DiffButton}"  Padding="5" x:Name="btnDoIt_Copy" Content="Logout"
+            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="705,384,0,0" Click="btnLogout"/>
+
+        <!--Background="BurlyWood"-->
+    </Grid>
+</Window>
